@@ -40,14 +40,14 @@
                 </div>
             </div>
             <div class="layer-row">
-                <span class="layer-swatch" style="background:#2f6e6a;"></span>
+                <span class="layer-swatch" style="background:##ffd400;"></span>
                 <div>
                     <div class="name">Waterproof membrane</div>
                     <div class="desc">Seals joints, seams, and penetrations</div>
                 </div>
             </div>
             <div class="layer-row">
-                <span class="layer-swatch" style="background:#c4622d;"></span>
+                <span class="layer-swatch" style="background:##e4202c;"></span>
                 <div>
                     <div class="name">Nano-tech coating</div>
                     <div class="desc">Reflects heat, resists dirt and UV damage</div>
@@ -193,20 +193,14 @@
             <h2>Recent work</h2>
             <p>A sample of roofs and facades we've insulated, sealed, and coated.</p>
         </div>
-        <div class="gallery-grid">
-            <div>
-                <x-img-holder label="Warehouse roof — nano coating" hint="Add project photo" />
-                <div class="gallery-cap"><strong>Logistics Warehouse</strong>Reflective nano coating, 4,200 m²</div>
-            </div>
-            <div>
-                <x-img-holder label="Apartment facade — insulation" hint="Add project photo" />
-                <div class="gallery-cap"><strong>Riverside Apartments</strong>Exterior wall insulation retrofit</div>
-            </div>
-            <div>
-                <x-img-holder label="Podium deck — waterproofing" hint="Add project photo" />
-                <div class="gallery-cap"><strong>Midtown Office Podium</strong>Full membrane waterproofing</div>
-            </div>
-        </div>
+        <x-carousel :items="[
+            ['label' => 'Warehouse roof — nano coating', 'title' => 'Logistics Warehouse', 'caption' => 'Reflective nano coating, 4,200 m²'],
+            ['label' => 'Apartment facade — insulation', 'title' => 'Riverside Apartments', 'caption' => 'Exterior wall insulation retrofit'],
+            ['label' => 'Podium deck — waterproofing', 'title' => 'Midtown Office Podium', 'caption' => 'Full membrane waterproofing'],
+            ['label' => 'Cold storage — coating', 'title' => 'Cold Storage Facility', 'caption' => 'Reflective nano-tech coating'],
+            ['label' => 'Sports hall — roof insulation', 'title' => 'Community Sports Hall', 'caption' => 'Rigid board roof insulation'],
+            ['label' => 'Villas — exterior system', 'title' => 'Hillside Villas', 'caption' => 'EIFS facade system'],
+        ]" />
         <div style="margin-top:34px;">
             <a href="{{ route('gallery') }}" class="btn btn-outline-dark">View the full gallery</a>
         </div>
