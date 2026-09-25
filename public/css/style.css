@@ -495,3 +495,102 @@ footer { background: var(--graphite); color: #cfcdea; padding: 60px 0 26px; }
   .footer-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
 }
+/* ---------------- Maps ---------------- */
+.map-embed {
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.map-embed iframe {
+  width: 100%;
+  height: 380px;
+  border: 0;
+  display: block;
+}
+
+.footer-map {
+  margin-top: 16px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.footer-map iframe {
+  width: 100%;
+  height: 140px;
+  border: 0;
+  display: block;
+  filter: grayscale(0.2) contrast(1.05);
+}
+/* ---------------- Map click-to-zoom ---------------- */
+.map-click-wrap {
+  position: relative;
+  cursor: zoom-in;
+}
+.map-click-wrap iframe { pointer-events: none; } /* clicks go to the overlay below, not the map itself */
+.map-zoom-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 32, 94, 0);
+  opacity: 0;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+.map-click-wrap:hover .map-zoom-hint {
+  opacity: 1;
+  background: rgba(20, 32, 94, 0.18);
+}
+.map-zoom-hint span {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(20, 32, 94, 0.35);
+}
+.map-zoom-hint svg { width: 20px; height: 20px; color: var(--graphite); }
+
+.map-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 32, 94, 0.75);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.map-modal-overlay.open { display: flex; }
+.map-modal {
+  position: relative;
+  width: min(900px, 100%);
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.map-modal iframe { width: 100%; height: 70vh; border: 0; display: block; }
+.map-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--graphite);
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.map-modal-close svg { width: 18px; height: 18px; }
+/* ---------------- Admin table ---------------- */
+.admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.admin-table th, .admin-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.admin-table th { font-weight: 600; color: var(--graphite); background: rgba(0,0,0,0.03); white-space: nowrap; }
+.admin-table td { color: #000000; }
+.admin-table tbody tr:hover { background: rgba(0,0,0,0.02); }
+.admin-table__message { max-width: 320px; }
