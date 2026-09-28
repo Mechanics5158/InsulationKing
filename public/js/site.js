@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             links.style.top = '76px';
             links.style.left = '0';
             links.style.right = '0';
-            links.style.background = '#f7f4ec';
+            links.style.background = '#fffdf5';
             links.style.padding = '20px 28px';
             links.style.borderBottom = '1px solid rgba(28,31,36,0.12)';
             toggle.setAttribute('aria-expanded', String(!open));

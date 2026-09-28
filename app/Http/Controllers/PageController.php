@@ -14,6 +14,11 @@ class PageController extends Controller
         return view('services');
     }
 
+    public function products()
+    {
+        return view('products');
+    }
+
     public function about()
     {
         return view('about');

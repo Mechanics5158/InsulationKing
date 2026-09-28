@@ -66,7 +66,7 @@
 
 <section style="padding-top:0; padding-bottom:0;">
     <div class="wrap">
-        <x-img-holder label="Crew on a completed roof project" hint="Add wide project or team photo" class="img-holder-banner" />
+        <img src="{{ asset('images/home/roofproject.jpg') }}" alt="Insulation King crew on a completed roof project" class="img-holder-banner">
     </div>
 </section>
 
@@ -195,15 +195,15 @@
         </div>
         <div class="gallery-grid">
             <div>
-                <x-img-holder label="Warehouse roof — nano coating" hint="Add project photo" />
+                <img src="{{ asset('images/home/warehouseroof.jpg') }}" alt="Warehouse roof — nano coating" />
                 <div class="gallery-cap"><strong>Logistics Warehouse</strong>Reflective nano coating, 4,200 m²</div>
             </div>
             <div>
-                <x-img-holder label="Apartment facade — insulation" hint="Add project photo" />
+                <img src="{{ asset('images/home/apartment.jpg') }}" alt="Apartment facade — insulation" />
                 <div class="gallery-cap"><strong>Riverside Apartments</strong>Exterior wall insulation retrofit</div>
             </div>
             <div>
-                <x-img-holder label="Podium deck — waterproofing" hint="Add project photo" />
+                <img src="{{ asset('images/home/podium.jpg') }}" alt="Podium deck — waterproofing" hint="Add project photo" />
                 <div class="gallery-cap"><strong>Midtown Office Podium</strong>Full membrane waterproofing</div>
             </div>
         </div>

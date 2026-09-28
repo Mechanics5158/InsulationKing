@@ -14,7 +14,18 @@
 <section>
     <div class="wrap visit-grid">
         <div>
-            <x-img-holder label="Map or storefront photo" hint="Add map embed or exterior photo" />
+            <div class="map-embed">
+                <iframe
+                    src="https://www.google.com/maps?q=World+Trade+Exchange+Bldg.,+Juan+Luna+Street,+Binondo,+Manila,+Philippines,+1008&output=embed"
+                    width="100%"
+                    height="360"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Insulation King location — World Trade Exchange Bldg., Binondo, Manila">
+                </iframe>
+            </div>
 
             <div class="visit-photo-grid">
                 <x-img-holder label="Office front" hint="Add photo" />
@@ -27,7 +38,7 @@
             <h3>Our location</h3>
             <div class="item">
                 <span class="k">Address</span>
-                123 Industrial Avenue, Your City
+                World Trade Exchange Bldg., Juan Luna Street, Binondo, Manila, Philippines, 1008
             </div>
             <div class="item">
                 <span class="k">Phone</span>
@@ -35,7 +46,7 @@
             </div>
             <div class="item">
                 <span class="k">Email</span>
-                <a href="mailto:hello@insulationking.test">hello@insulationking.test</a>
+                <a href="mailto:philippinesinsulationking@gmail.com">philippinesinsulationking@gmail.com</a>
             </div>
             <div class="item">
                 <span class="k">Parking</span>

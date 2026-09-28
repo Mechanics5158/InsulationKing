@@ -13,7 +13,7 @@
 
 <section style="padding-bottom:0;">
     <div class="wrap">
-        <x-img-holder label="Team or workshop photo" hint="Add wide company photo" class="img-holder-banner" />
+         <img src="{{ asset('images/about/planta.jpg') }}" alt="Add wide company photo" class="img-holder-banner" />
     </div>
 </section>
 
@@ -59,29 +59,21 @@
 <section>
     <div class="wrap">
         <div class="section-head">
-            <h2>The people on your roof</h2>
+            <h2>The process of work</h2>
             <p>A crew of certified installers and project leads, not day-labor turnover.</p>
         </div>
         <div class="team-grid">
             <div class="team-card">
-                <x-img-holder label="Team photo" hint="Add headshot" />
-                <div class="name">Operations Lead</div>
-                <div class="role">Site inspection & scoping</div>
+                <img src="{{ asset('images/about/pic1.jpg') }}" alt="Add headshot" />
             </div>
             <div class="team-card">
-                <x-img-holder label="Team photo" hint="Add headshot" />
-                <div class="name">Waterproofing Foreman</div>
-                <div class="role">Membrane systems</div>
+                <img src="{{ asset('images/about/pic2.jpg') }}" alt="Add headshot" />
             </div>
             <div class="team-card">
-                <x-img-holder label="Team photo" hint="Add headshot" />
-                <div class="name">Coatings Specialist</div>
-                <div class="role">Nano-tech application</div>
+                <img src="{{ asset('images/about/pic3.jpg') }}" alt="Add headshot" />
             </div>
             <div class="team-card">
-                <x-img-holder label="Team photo" hint="Add headshot" />
-                <div class="name">Client Manager</div>
-                <div class="role">Scheduling & warranty</div>
+                <img src="{{ asset('images/about/pic4.jpg') }}" alt="Add headshot" /> 
             </div>
         </div>
     </div>

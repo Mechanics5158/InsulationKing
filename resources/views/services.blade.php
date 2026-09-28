@@ -24,7 +24,7 @@
             <p>Rigid board and spray-applied systems sized to your roof's real thermal load, not a generic thickness.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <x-img-holder label="Roof insulation installation" hint="Add project photo" />
+             <img src="{{ asset('images/services/roof.jpg') }}" alt="Roof insulation installation" hint="Add project photo" />
             <div>
                 <ul>
                     <li>Site-specific thermal assessment before we quote anything</li>

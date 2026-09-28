@@ -20,6 +20,13 @@
 
             <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
+
+                {{-- Honeypot: real visitors never see or fill this. Bots that auto-fill every field usually do. --}}
+                <div class="hp-field" aria-hidden="true">
+                    <label for="website">Leave this field blank</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div class="form-grid">
                     <div class="field">
                         <label for="name">Full name</label>
@@ -73,7 +80,18 @@
                 <span class="k">Service area</span>
                 Residential, commercial & industrial roofs and facades
             </div>
-            <x-img-holder label="Office / map location" hint="Add map or storefront photo" />
+            <div class="map-embed">
+                <iframe
+                    src="https://www.google.com/maps?q=World+Trade+Exchange+Bldg.,+Juan+Luna+Street,+Binondo,+Manila,+Philippines,+1008&output=embed"
+                    width="100%"
+                    height="220"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Insulation King location — World Trade Exchange Bldg., Binondo, Manila">
+                </iframe>
+            </div>
         </div>
     </div>
 </section>
