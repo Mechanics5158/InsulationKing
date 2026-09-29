@@ -13,7 +13,7 @@
 
 <section style="padding-bottom:0;">
     <div class="wrap">
-        <x-img-holder label="Full envelope system in progress" hint="Add wide project photo" class="img-holder-banner" />
+        <img src="{{ asset('images/services/project.jpg') }}" alt="Add wide project photo" class="img-holder-banner" />
     </div>
 </section>
 
@@ -45,7 +45,7 @@
             <p>Continuous insulation wrapped around the outside of the building, so you're not losing interior space to furring and framing.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <x-img-holder label="Exterior wall system" hint="Add project photo" />
+            <img src="{{ asset('images/services/wall.jpg') }}" alt="Add project photo" />
             <div>
                 <ul>
                     <li>EIFS and rendered exterior insulation finish systems</li>
@@ -66,7 +66,7 @@
             <p>Fluid-applied and sheet membrane systems engineered around where your building actually leaks — not just the obvious spots.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <x-img-holder label="Membrane waterproofing" hint="Add project photo" />
+            <img src="{{ asset('images/services/waterproofing.jpg') }}" alt="Add project photo" />
             <div>
                 <ul>
                     <li>Roof, podium deck, terrace, and balcony membranes</li>
@@ -87,7 +87,7 @@
             <p>A high-performance nanoceramic top layer that reflects heat, resists dirt and algae, and protects everything underneath from UV breakdown.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <x-img-holder label="Nano coating application" hint="Add project photo" />
+            <img src="{{ asset('images/services/nano.jpg') }}" alt="Add project photo" />
             <div>
                 <ul>
                     <li>Heat-reflective coatings that lower roof surface temperature</li>

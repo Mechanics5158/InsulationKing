@@ -24,23 +24,27 @@
         <div class="gallery-grid">
             @php
                 $projects = [
-                    ['cat' => 'roof', 'title' => 'Logistics Warehouse', 'sub' => 'Roof insulation, 4,200 m²'],
-                    ['cat' => 'exterior', 'title' => 'Riverside Apartments', 'sub' => 'Exterior wall insulation retrofit'],
-                    ['cat' => 'waterproofing', 'title' => 'Midtown Office Podium', 'sub' => 'Full membrane waterproofing'],
-                    ['cat' => 'coating', 'title' => 'Cold Storage Facility', 'sub' => 'Reflective nano-tech coating'],
-                    ['cat' => 'roof', 'title' => 'Community Sports Hall', 'sub' => 'Rigid board roof insulation'],
-                    ['cat' => 'exterior', 'title' => 'Hillside Villas', 'sub' => 'EIFS facade system'],
-                    ['cat' => 'waterproofing', 'title' => 'Underground Parking', 'sub' => 'Below-grade waterproofing'],
-                    ['cat' => 'coating', 'title' => 'Metal Roof Retrofit', 'sub' => 'UV-resistant nano coating'],
-                    ['cat' => 'roof', 'title' => 'School Building', 'sub' => 'Spray-applied insulation'],
+                    ['cat' => 'roof', 'title' => 'Logistics Warehouse', 'sub' => 'Reflective nano coating, 4,200 m²', 'image' => 'roof1.jpg'],
+                    ['cat' => 'exterior', 'title' => 'Riverside Apartments', 'sub' => 'Exterior wall insulation retrofit', 'image' => 'external1.jpg'],
+                    ['cat' => 'waterproofing', 'title' => 'Midtown Office Podium', 'sub' => 'Full membrane waterproofing', 'image' => 'waterproofing1.jpg'],
+                    ['cat' => 'roof', 'title' => 'Community Sports Hall', 'sub' => 'Rigid board roof insulation', 'image' => 'roof2.jpg'],
+                    ['cat' => 'coating', 'title' => 'Cold Storage Facility', 'sub' => 'Reflective nano-tech coating','image' =>'nano1.jpg'],
+                    ['cat' => 'exterior', 'title' => 'Hillside Villas', 'sub' => 'EIFS facade system', 'image' => 'external2.jpg'],
+                    ['cat' => 'waterproofing', 'title' => 'Underground Parking', 'sub' => 'Below-grade waterproofing', 'image' => 'waterproofing2.jpg'],
+                    ['cat' => 'coating', 'title' => 'Metal Roof Retrofit', 'sub' => 'UV-resistant nano coating', 'image' => 'nano2.jpg'],
+                    ['cat' => 'roof', 'title' => 'School Building', 'sub' => 'Spray-applied insulation', 'image' => 'roof3.jpg'],
                 ];
             @endphp
 
             @foreach ($projects as $project)
                 <div data-category="{{ $project['cat'] }}">
-                    <x-img-holder :label="$project['title']" hint="Add project photo" />
+                    @if (!empty($project['image']))
+                        <img src="{{ asset('images/gallery/' . $project['image']) }}" alt="{{ $project['title'] }}" style="width:100%; height:220px; object-fit:cover; border-radius:3px;">
+                    @else
+                        <x-img-holder :label="$project['title']" hint="Add project photo" />
+                    @endif
                     <div class="gallery-cap">
-                        <strong>{{ $project['title'] }}</strong>{{ $project['sub'] }}
+                        <strong>{{ $project['title'] }}</strong><br>{{ $project['sub'] }}
                     </div>
                 </div>
             @endforeach

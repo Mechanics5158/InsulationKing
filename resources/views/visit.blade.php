@@ -42,7 +42,7 @@
             </div>
             <div class="item">
                 <span class="k">Phone</span>
-                <a href="tel:+10000000000">(000) 000-0000</a>
+                <a href="09561894473">09561894473</a>
             </div>
             <div class="item">
                 <span class="k">Email</span>

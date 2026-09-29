@@ -55,13 +55,6 @@
             </div>
         </div>
     </div>
-
-    <div class="layer-strip">
-        <div><span class="n">01</span> Substrate</div>
-        <div><span class="n">02</span> Insulation</div>
-        <div><span class="n">03</span> Waterproofing</div>
-        <div><span class="n">04</span> Nano Coating</div>
-    </div>
 </section>
 
 <section style="padding-top:0; padding-bottom:0;">

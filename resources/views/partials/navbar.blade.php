@@ -1,8 +1,7 @@
 <header class="nav">
     <div class="wrap">
         <a href="{{ route('home') }}" class="brand">
-            <span class="brand-mark" aria-hidden="true"></span>
-            Insulation King
+            <img src="{{ asset('images/misc/logo-wide.png') }}" alt="Insulation King" class="brand-logo">
         </a>
 
         <nav class="nav-links" id="nav-links">

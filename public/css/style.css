@@ -1,19 +1,30 @@
 /* ===========================================================
    Insulation King — Brand Tokens
-   Palette matched to the logo: navy, red, yellow.
+   Palette matched to the logo: yellow, red, blue.
    =========================================================== */
 :root {
-  --graphite: #14205e;       /* deep navy */
-  --graphite-soft: #2b3b8c;  /* lighter navy */
-  --sand: #fff3b0;           /* soft yellow tint for alternating sections */
-  --sand-light: #fffdf5;     /* main page background */
-  --copper: #e4202c;         /* red — primary buttons/accents */
-  --copper-dark: #b8161f;    /* red hover */
-  --teal: #ffd400;           /* brand yellow */
+  /* ---- THREE BRAND COLORS, assigned by placement ----
+     YELLOW  -> frames the page: header, CTA bands, stat numbers, accent lines
+     BLUE    -> content: all text, headings, dark sections, page banners, footer, outline buttons
+     RED     -> action: primary buttons, active/hover links, focus rings, accent lines, errors */
+  --yellow: #fbe207;         /* logo yellow (header, CTA band) */
+  --yellow-soft: #fff3b0;    /* light yellow tint: alternating sections, cards */
+  --paper: #fffdf5;          /* main page background (barely-yellow white) */
+  --blue: #14205e;           /* deep navy: text, headings, dark sections, footer */
+  --blue-soft: #2b3b8c;      /* lighter navy: nav links, secondary text */
+  --red: #e4202c;            /* primary buttons, accents */
+  --red-dark: #b8161f;       /* red hover, active links, errors */
+
+  /* Home-page layer diagram: one color per layer */
+  --layer-substrate: #aab3e6;    /* light blue */
+  --layer-insulation: #fbe207;   /* yellow */
+  --layer-waterproof: #3d6fe8;   /* bright blue */
+  --layer-nano: #e4202c;         /* red */
+
   --ink: #14205e;
   --muted: #3f4066;          /* body text on light backgrounds */
   --muted-soft: #55588a;     /* small/secondary text */
-  --on-dark-muted: #cfd0f0;  /* text on navy */
+  --on-blue-muted: #cfd0f0;  /* text on navy */
   --line: rgba(20, 32, 94, 0.14);
   --line-light: rgba(255, 255, 255, 0.18);
 
@@ -21,6 +32,18 @@
   --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   --max-w: 1160px;
+
+  /* ---- Image aspect ratios, keyed by purpose ----
+     aspect-ratio (not a fixed px height) so every box stays
+     proportional at any card width, including the 1-column
+     mobile layouts where a fixed height used to look squashed. */
+  --ratio-hero-banner: 21 / 9;   /* big hero / page-header illustration */
+  --ratio-gallery: 4 / 3;        /* project gallery cards */
+  --ratio-visit-photo: 4 / 3;    /* "visit us" location photos */
+  --ratio-team: 1 / 1;           /* team member portraits (square) */
+  --ratio-carousel: 4 / 3;       /* carousel slide media */
+  --ratio-service: 4 / 3;        /* service-row illustrations, if any */
+  --ratio-default: 16 / 10;      /* any other placeholder, no specific context */
 }
 
 * { box-sizing: border-box; }
@@ -31,7 +54,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background: var(--sand-light);
+  background: var(--paper);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
@@ -59,7 +82,7 @@ p { max-width: 62ch; }
 
 /* Keyboard focus */
 a:focus-visible, button:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--teal);
+  outline: 3px solid var(--red);
   outline-offset: 3px;
 }
 
@@ -79,20 +102,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .btn:active { transform: translateY(1px); }
 
-.btn-copper { background: var(--copper); color: #fff; }
-.btn-copper:hover { background: var(--copper-dark); }
+/* White on --red checks out at ~4.63:1 (WCAG AA, ≥4.5:1 for normal text) —
+   fine as-is, but it's close to the line, so don't darken --red further
+   without rechecking contrast. --red-dark on hover is safely above AA. */
+.btn-copper { background: var(--red); color: #fff; }
+.btn-copper:hover { background: var(--red-dark); }
 
-.btn-outline-dark { border-color: var(--graphite); color: var(--graphite); }
-.btn-outline-dark:hover { background: var(--graphite); color: #fff; }
+.btn-outline-dark { border-color: var(--blue); color: var(--blue); }
+.btn-outline-dark:hover { background: var(--blue); color: #fff; }
 
 /* ---------------- Navbar ---------------- */
 .nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 253, 245, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line);
+  background: var(--yellow);
 }
 .nav .wrap {
   display: flex;
@@ -107,14 +131,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--graphite);
-}
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 2px;
-  background: linear-gradient(180deg, var(--copper) 0%, var(--copper) 34%, var(--teal) 34%, var(--teal) 68%, var(--graphite) 68%);
-  flex: none;
+  color: var(--blue);
 }
 .nav-links {
   display: flex;
@@ -124,14 +141,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-weight: 500;
 }
 .nav-links a {
-  color: var(--graphite-soft);
+  color: var(--blue-soft);
   padding: 6px 0;
   border-bottom: 2px solid transparent;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .nav-links a:hover, .nav-links a.active {
-  color: var(--copper-dark);
-  border-color: var(--copper);
+  color: var(--red-dark);
+  border-color: var(--red);
 }
 .nav-cta { display: flex; align-items: center; gap: 22px; }
 .nav-toggle {
@@ -143,10 +160,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   cursor: pointer;
   padding: 6px;
 }
-.nav-toggle span { width: 24px; height: 2px; background: var(--graphite); display: block; }
+.nav-toggle span { width: 24px; height: 2px; background: var(--blue); display: block; }
+
+/* Logo mark in the navbar — fixed footprint so it never pushes nav height around */
+.brand-mark {
+  width: 75px;
+  height: 75px;
+  border-radius: 2px;
+  flex: none;
+  object-fit: contain;
+}
+
+/* Logo-only header: the logo image is the whole brand area */
+.brand-logo {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 640px) {
+  .brand-logo { height: 46px; }
+}
 
 /* ---------------- Hero ---------------- */
-.hero { background: var(--sand-light); padding: 56px 0 0; }
+.hero { background: var(--paper); padding: 56px 0 0; }
 .hero .wrap {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -156,7 +192,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .hero h1 {
   font-size: clamp(2.1rem, 4vw, 3.15rem);
-  color: var(--graphite);
+  color: var(--blue);
   max-width: 14ch;
 }
 .hero .lede {
@@ -175,16 +211,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-top: 1px solid var(--line);
   padding-top: 18px;
 }
-.hero-trust strong { color: var(--graphite); font-family: var(--font-display); font-size: 1rem; display: block; }
+.hero-trust strong { color: var(--blue); font-family: var(--font-display); font-size: 1rem; display: block; }
 
 /* Layer cross-section illustration */
 .layer-diagram {
-  background: var(--graphite);
+  background: var(--blue);
   border-radius: 4px;
   padding: 30px 26px;
   color: #fff;
 }
-.layer-diagram .cap { font-size: 0.8rem; color: var(--on-dark-muted); margin-bottom: 18px; }
+.layer-diagram .cap { font-size: 0.8rem; color: var(--on-blue-muted); margin-bottom: 18px; }
 .layer-row {
   display: flex;
   align-items: center;
@@ -195,27 +231,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .layer-row:last-child { border-bottom: none; }
 .layer-swatch { width: 34px; height: 34px; border-radius: 2px; flex: none; }
 .layer-row .name { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
-.layer-row .desc { font-size: 0.82rem; color: var(--on-dark-muted); }
-
-/* Strip naming the four layers */
-.layer-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.layer-strip > div {
-  padding: 16px 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-  font-family: var(--font-display);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.layer-strip .n { opacity: 0.65; font-weight: 500; }
-
+.layer-row .desc { font-size: 0.82rem; color: var(--on-blue-muted); }
 /* ---------------- Section basics ---------------- */
 section { padding: 56px 0; }
 section[id] { scroll-margin-top: 90px; }
@@ -227,13 +243,13 @@ section[id] { scroll-margin-top: 90px; }
   align-items: end;
   margin-bottom: 36px;
 }
-.section-head h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); color: var(--graphite); max-width: 14ch; }
+.section-head h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); color: var(--blue); max-width: 14ch; }
 .section-head p { color: var(--muted); }
 
-.on-dark { background: var(--graphite); color: #fff; }
+.on-dark { background: var(--blue); color: #fff; }
 .on-dark h2 { color: #fff; }
-.on-dark p { color: var(--on-dark-muted); }
-.on-sand { background: var(--sand); }
+.on-dark p { color: var(--on-blue-muted); }
+.on-sand { background: var(--yellow-soft); }
 .on-sand p, .on-sand .section-head p { color: var(--muted); }
 
 /* ---------------- Services ---------------- */
@@ -248,16 +264,17 @@ section[id] { scroll-margin-top: 90px; }
 .service-row .idx {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  color: var(--copper-dark);
+  color: var(--red-dark);
   display: flex;
   align-items: baseline;
   gap: 12px;
 }
-.service-row h3 { font-size: 1.3rem; color: var(--graphite); margin-bottom: 10px; }
+.service-row h3 { font-size: 1.3rem; color: var(--blue); margin-bottom: 10px; }
 .service-row .desc-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
 .service-row p { color: var(--muted); }
 .service-row ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.93rem; }
 .service-row li { margin-bottom: 6px; }
+.service-row :is(.img-holder, img) { --box-ratio: var(--ratio-service); }
 
 /* ---------------- Stats ---------------- */
 .stats {
@@ -268,8 +285,8 @@ section[id] { scroll-margin-top: 90px; }
   padding-top: 36px;
   margin-top: 36px;
 }
-.stat .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--teal); }
-.stat .label { font-size: 0.88rem; color: var(--on-dark-muted); margin-top: 4px; }
+.stat .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--yellow); }
+.stat .label { font-size: 0.88rem; color: var(--on-blue-muted); margin-top: 4px; }
 
 /* ---------------- Process ---------------- */
 .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
@@ -281,16 +298,17 @@ section[id] { scroll-margin-top: 90px; }
 .process-step .step-num {
   font-family: var(--font-display);
   font-size: 0.85rem;
-  color: var(--graphite);
+  color: var(--blue);
   font-weight: 700;
   margin-bottom: 10px;
 }
-.process-step h4 { font-size: 1.05rem; color: var(--graphite); }
+.process-step h4 { font-size: 1.05rem; color: var(--blue); }
 .process-step p { font-size: 0.9rem; color: var(--muted); }
 
 /* ---------------- Image placeholders ---------------- */
+/* Base placeholder: default footprint for any spot with no more specific rule below */
 .img-holder {
-  background: repeating-linear-gradient(135deg, #fff8cf, #fff8cf 10px, var(--sand) 10px, var(--sand) 20px);
+  background: repeating-linear-gradient(135deg, #fff8cf, #fff8cf 10px, var(--yellow-soft) 10px, var(--yellow-soft) 20px);
   border: 1.5px dashed rgba(20, 32, 94, 0.35);
   border-radius: 3px;
   display: flex;
@@ -298,27 +316,57 @@ section[id] { scroll-margin-top: 90px; }
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--graphite-soft);
+  color: var(--blue-soft);
   text-align: center;
   padding: 24px;
-  min-height: 180px;
+  width: 100%;
+  aspect-ratio: var(--ratio-default);
 }
 .img-holder svg { width: 30px; height: 30px; opacity: 0.55; }
 .img-holder .label { font-size: 0.82rem; font-weight: 600; font-family: var(--font-body); }
 .img-holder .hint { font-size: 0.72rem; color: var(--muted-soft); }
 
-.img-holder-banner { min-height: 240px; }
+/* ---- Shared "media box" behavior -----------------------------------------
+   One rule set for every spot where a placeholder gets swapped for a real
+   photo (gallery, team, carousel, visit photos, hero banner). Each context
+   below only needs to set --box-ratio; width/object-fit/radius stay in sync
+   automatically, so a new gallery-like section just needs one line.
+
+   aspect-ratio reserves the box's shape immediately, but the browser still
+   doesn't know the image's own pixel size until it downloads, so also add
+   width/height attributes (the image's real intrinsic size, not the display
+   size) and loading="lazy" on each <img> in the HTML/Blade templates —
+   e.g. <img src="..." width="800" height="600" loading="lazy">.
+   That's what actually prevents layout shift and defers off-screen loads;
+   CSS here can't set either one. */
+.gallery-grid :is(.img-holder, img),
+.team-card :is(.img-holder, img),
+.carousel-slide :is(.img-holder, img),
+.visit-photo-grid :is(.img-holder, img),
+.service-row :is(.img-holder, img),
+.img-holder-banner,
+img.img-holder-banner {
+  width: 100%;
+  aspect-ratio: var(--box-ratio, var(--ratio-default));
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.img-holder-banner,
+img.img-holder-banner { --box-ratio: var(--ratio-hero-banner); }
 .img-holder-banner svg { width: 42px; height: 42px; }
 .img-holder-banner .label { font-size: 0.95rem; }
 
+/* ---- Gallery: every card — placeholder or real photo — is identical ---- */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
-.gallery-grid .img-holder { min-height: 220px; }
+.gallery-grid :is(.img-holder, img) { --box-ratio: var(--ratio-gallery); }
 .gallery-cap { margin-top: 10px; font-size: 0.88rem; color: var(--muted); }
-.gallery-cap strong { display: block; color: var(--graphite); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+.gallery-cap strong { display: block; color: var(--blue); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
 
 /* ---------------- Carousel ---------------- */
 .carousel-viewport {
@@ -334,12 +382,13 @@ section[id] { scroll-margin-top: 90px; }
 .carousel-viewport::-webkit-scrollbar { height: 6px; }
 .carousel-viewport::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .carousel-slide { flex: 0 0 clamp(230px, 30vw, 340px); scroll-snap-align: start; }
+.carousel-slide :is(.img-holder, img) { --box-ratio: var(--ratio-carousel); }
 .carousel-nav { display: flex; gap: 10px; margin-top: 18px; }
 .carousel-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1.5px solid var(--graphite);
+  border: 1.5px solid var(--blue);
   background: #fff;
   display: flex;
   align-items: center;
@@ -347,7 +396,7 @@ section[id] { scroll-margin-top: 90px; }
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
-.carousel-btn:hover { background: var(--graphite); color: #fff; }
+.carousel-btn:hover { background: var(--blue); color: #fff; }
 .carousel-btn svg { width: 16px; height: 16px; }
 .on-dark .carousel-btn, .on-sand .carousel-btn { background: transparent; }
 
@@ -356,20 +405,20 @@ section[id] { scroll-margin-top: 90px; }
 .testimonial blockquote {
   font-family: var(--font-display);
   font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-  color: var(--graphite);
+  color: var(--blue);
   margin: 0 0 22px;
   line-height: 1.35;
 }
 .testimonial cite { font-style: normal; font-size: 0.9rem; color: var(--muted); }
 
 /* ---------------- CTA band ---------------- */
-.cta-band { background: var(--teal); color: var(--graphite); padding: 52px 0; }
+.cta-band { background: var(--yellow); color: var(--blue); padding: 52px 0; }
 .cta-band .wrap { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
-.cta-band h2 { color: var(--graphite); margin-bottom: 6px; }
+.cta-band h2 { color: var(--blue); margin-bottom: 6px; }
 .cta-band p { color: var(--muted); margin: 0; }
 
 /* ---------------- Footer ---------------- */
-footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px 0 26px; }
+footer { background: var(--blue); color: var(--on-blue-muted); padding: 52px 0 26px; border-top: 3px solid var(--yellow); }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -380,27 +429,28 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .footer-grid h4 { color: #fff; font-size: 0.95rem; margin-bottom: 14px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
 .footer-grid li { margin-bottom: 9px; }
-.footer-grid a:hover { color: var(--teal); }
+.footer-grid a { color: var(--on-blue-muted); }
+.footer-grid a:hover { color: var(--yellow); }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   padding-top: 22px;
   font-size: 0.82rem;
-  color: #a9a8d0;
+  color: var(--on-blue-muted);
   flex-wrap: wrap;
   gap: 10px;
 }
 
 /* ---------------- Inner page hero ---------------- */
-.page-hero { background: var(--graphite); color: #fff; padding: 52px 0; }
+.page-hero { background: var(--blue); color: #fff; padding: 52px 0; }
 .page-hero h1 { color: #fff; max-width: 22ch; font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
-.page-hero p { color: var(--on-dark-muted); max-width: 56ch; }
+.page-hero p { color: var(--on-blue-muted); max-width: 56ch; }
 
 /* ---------------- Forms ---------------- */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; }
 .field.full { grid-column: 1 / -1; }
-.field label { font-size: 0.85rem; font-weight: 600; color: var(--graphite); }
+.field label { font-size: 0.85rem; font-weight: 600; color: var(--blue); }
 .field input, .field select, .field textarea {
   font-family: var(--font-body);
   font-size: 0.95rem;
@@ -413,36 +463,41 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .field textarea { resize: vertical; min-height: 130px; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
-  border-color: var(--copper);
+  border-color: var(--red);
   box-shadow: 0 0 0 3px rgba(228, 32, 44, 0.15);
 }
+/* Visually hides the honeypot field, but a screen reader can still tab into
+   it since CSS alone doesn't remove it from the tab order. On the actual
+   <input class="hp-field">, also add in the HTML:
+   aria-hidden="true" tabindex="-1" autocomplete="off" */
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .alert { padding: 14px 18px; border-radius: 3px; margin-bottom: 24px; font-size: 0.92rem; }
-.alert-success { background: #e4efe6; color: #2c5c39; border: 1px solid #b7d8bd; }
+.alert-success { background: var(--yellow-soft); color: var(--blue); border: 1px solid var(--blue); }
 
 .contact-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; }
-.contact-info-card { background: var(--sand); border-radius: 4px; padding: 30px; }
-.contact-info-card h3 { font-size: 1.05rem; color: var(--graphite); margin-bottom: 18px; }
+.contact-info-card { background: var(--yellow-soft); border-radius: 4px; padding: 30px; }
+.contact-info-card h3 { font-size: 1.05rem; color: var(--blue); margin-bottom: 18px; }
 .contact-info-card .item { margin-bottom: 18px; font-size: 0.92rem; color: var(--muted); }
-.contact-info-card .item .k { display: block; font-weight: 600; color: var(--graphite-soft); margin-bottom: 3px; }
+.contact-info-card .item .k { display: block; font-weight: 600; color: var(--blue-soft); margin-bottom: 3px; }
 
 /* ---------------- Visit Us ---------------- */
 .visit-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: start; }
 .hours-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-top: 6px; }
 .hours-table td { padding: 8px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
-.hours-table td:first-child { font-weight: 600; color: var(--graphite); width: 40%; }
+.hours-table td:first-child { font-weight: 600; color: var(--blue); width: 40%; }
 .visit-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+.visit-photo-grid :is(.img-holder, img) { --box-ratio: var(--ratio-visit-photo); }
 
 /* ---------------- About ---------------- */
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.value-card { border-top: 3px solid var(--copper); padding-top: 18px; }
-.value-card h4 { color: var(--graphite); font-size: 1.05rem; }
+.value-card { border-top: 3px solid var(--red); padding-top: 18px; }
+.value-card h4 { color: var(--blue); font-size: 1.05rem; }
 .value-card p { font-size: 0.92rem; color: var(--muted); }
 
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.team-card .img-holder { min-height: 160px; margin-bottom: 12px; }
-.team-card .name { font-family: var(--font-display); font-weight: 600; color: var(--graphite); }
+.team-card :is(.img-holder, img) { --box-ratio: var(--ratio-team); margin-bottom: 12px; }
+.team-card .name { font-family: var(--font-display); font-weight: 600; color: var(--blue); }
 .team-card .role { font-size: 0.85rem; color: var(--muted-soft); }
 
 /* ---------------- Maps ---------------- */
@@ -482,7 +537,7 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
   justify-content: center;
   box-shadow: 0 4px 14px rgba(20, 32, 94, 0.35);
 }
-.map-zoom-hint svg { width: 20px; height: 20px; color: var(--graphite); }
+.map-zoom-hint svg { width: 20px; height: 20px; color: var(--blue); }
 
 .map-modal-overlay {
   position: fixed;
@@ -504,7 +559,7 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1.5px solid var(--graphite);
+  border: 1.5px solid var(--blue);
   background: #fff;
   cursor: pointer;
   display: flex;
@@ -517,7 +572,7 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 /* ---------------- Admin table ---------------- */
 .admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .admin-table th, .admin-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
-.admin-table th { font-weight: 600; color: var(--graphite); background: rgba(20, 32, 94, 0.05); white-space: nowrap; }
+.admin-table th { font-weight: 600; color: var(--blue); background: rgba(20, 32, 94, 0.05); white-space: nowrap; }
 .admin-table td { color: var(--ink); }
 .admin-table tbody tr:hover { background: rgba(255, 212, 0, 0.12); }
 .admin-table__message { max-width: 320px; }
