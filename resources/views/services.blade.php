@@ -11,9 +11,16 @@
     </div>
 </section>
 
-<section style="padding-bottom:0;">
+<section style="padding-top:0; padding-bottom:0;">
     <div class="wrap">
-        <img src="{{ asset('images/services/project.jpg') }}" alt="Add wide project photo" class="img-holder-banner" />
+        <div class="reel-banner">
+            <div class="fb-video"
+                 data-href="https://www.facebook.com/reel/3019697534854692"
+                 data-width="900"
+                 data-show-text="false"
+                 data-autoplay="true">
+            </div>
+        </div>
     </div>
 </section>
 

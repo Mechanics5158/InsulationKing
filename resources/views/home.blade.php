@@ -59,7 +59,14 @@
 
 <section style="padding-top:0; padding-bottom:0;">
     <div class="wrap">
-        <img src="{{ asset('images/home/roofproject.jpg') }}" alt="Insulation King crew on a completed roof project" class="img-holder-banner">
+        <div class="reel-banner">
+            <div class="fb-video"
+                 data-href="https://www.facebook.com/reel/1348194289165954"
+                 data-width="900"
+                 data-show-text="false"
+                 data-autoplay="true">
+            </div>
+        </div>
     </div>
 </section>
 

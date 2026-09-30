@@ -66,11 +66,11 @@
             <h3>Direct contact</h3>
             <div class="item">
                 <span class="k">Phone</span>
-                <a href="tel:+10000000000">(000) 000-0000</a>
+                <a href="09561894473">09561894473</a>
             </div>
             <div class="item">
                 <span class="k">Email</span>
-                <a href="mailto:hello@insulationking.test">hello@insulationking.test</a>
+                <a href="philippinesinsulationking@gmail.com">philippinesinsulationking@gmail.com</a>
             </div>
             <div class="item">
                 <span class="k">Hours</span>

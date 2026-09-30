@@ -23,6 +23,12 @@
 
     @include('partials.footer')
 
+    {{-- Facebook SDK — needed once site-wide for any .fb-video / reel embeds --}}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0">
+    </script>
+
     <script src="{{ asset('js/site.js') }}"></script>
     @stack('scripts')
 </body>
