@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Insulation King — Roof & Exterior Insulation, Waterproofing, Nano Coatings')
+@section('title', 'Insulation King Roof & Exterior Insulation, Waterproofing, Nano Coatings')
+@section('body-class', 'page-home')
 
 @section('content')
 
@@ -10,7 +11,7 @@
             <h1>Buildings that hold their temperature and shrug off the weather.</h1>
             <p class="lede">
                 Insulation King installs roof and exterior insulation, waterproofing membranes, and high-performance
-                nano-tech coatings — the full envelope, done as one job instead of three separate headaches.
+                nano-tech coatings the full envelope, done as one job instead of three separate headaches.
             </p>
             <div class="hero-actions">
                 <a href="{{ route('contact') }}" class="btn btn-copper">Request a free inspection</a>
@@ -57,15 +58,22 @@
     </div>
 </section>
 
-<section style="padding-top:0; padding-bottom:0;">
-    <div class="wrap">
+{{-- ============ VIDEO ============
+     File: public/videos/home.mp4 --}}
+<section class="on-sand">
+    <div class="wrap reel-split">
         <div class="reel-banner">
-            <div class="fb-video"
-                 data-href="https://www.facebook.com/reel/1348194289165954"
-                 data-width="900"
-                 data-show-text="false"
-                 data-autoplay="true">
-            </div>
+            <video autoplay muted loop controls playsinline preload="auto">
+                <source src="{{ asset('videos/home.mp4') }}" type="video/mp4">
+                Your browser doesn't support video playback.
+            </video>
+        </div>
+
+        <div>
+            <h2>See it tested</h2>
+            <p>Watch our coating go through live flame tests.</p>
+            <p>Call or message us on Globe &amp; Viber for a free inspection.</p>
+            <a href="{{ route('contact') }}" class="btn btn-copper">Request a free inspection</a>
         </div>
     </div>
 </section>
@@ -113,7 +121,7 @@
             <div class="desc-cols">
                 <div>
                     <h3>Waterproofing</h3>
-                    <p>Fluid-applied and sheet membrane systems for roofs, terraces, basements, and facades — engineered around your building's actual leak points, not just the obvious ones.</p>
+                    <p>Fluid-applied and sheet membrane systems for roofs, terraces, basements, and facades engineered around your building's actual leak points, not just the obvious ones.</p>
                 </div>
                 <ul>
                     <li>Roof, podium & terrace membranes</li>
@@ -195,15 +203,15 @@
         </div>
         <div class="gallery-grid">
             <div>
-                <img src="{{ asset('images/home/warehouseroof.jpg') }}" alt="Warehouse roof — nano coating" />
+                <img src="{{ asset('images/home/warehouseroof.jpg') }}" alt="Warehouse roof nano coating" />
                 <div class="gallery-cap"><strong>Logistics Warehouse</strong>Reflective nano coating, 4,200 m²</div>
             </div>
             <div>
-                <img src="{{ asset('images/home/apartment.jpg') }}" alt="Apartment facade — insulation" />
+                <img src="{{ asset('images/home/apartment.jpg') }}" alt="Apartment facade insulation" />
                 <div class="gallery-cap"><strong>Riverside Apartments</strong>Exterior wall insulation retrofit</div>
             </div>
             <div>
-                <img src="{{ asset('images/home/podium.jpg') }}" alt="Podium deck — waterproofing" hint="Add project photo" />
+                <img src="{{ asset('images/home/podium.jpg') }}" alt="Podium deck waterproofing" />
                 <div class="gallery-cap"><strong>Midtown Office Podium</strong>Full membrane waterproofing</div>
             </div>
         </div>
@@ -219,7 +227,7 @@
             "Our warehouse roof used to hit 60°C in summer. After the coating and insulation work, the shop floor is
             noticeably cooler and our cooling costs dropped within the first month."
         </blockquote>
-        — Facilities Manager, Logistics Warehouse client
+        <cite> Facilities Manager, Logistics Warehouse client</cite>
     </div>
 </section>
 

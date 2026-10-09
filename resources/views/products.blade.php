@@ -1,26 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'Products — Insulation King')
+@section('title', 'Products Insulation King')
+@section('body-class', 'page-products')
 
 @section('content')
 
 <section class="page-hero">
     <div class="wrap">
         <h1>The materials behind every install</h1>
-        <p>Every system we install uses specific, spec-grade products — not generic hardware-store materials. Here's what actually goes into your roof or facade.</p>
+        <p>Every system we install uses specific, spec-grade products not generic hardware-store materials. Here's what actually goes into your roof or facade.</p>
     </div>
 </section>
 
-
-<section style="padding-top:0; padding-bottom:0;">
-    <div class="wrap">
+{{-- ============ VIDEO ============
+     File: public/videos/products.mp4 --}}
+<section class="on-sand">
+    <div class="wrap reel-split">
         <div class="reel-banner">
-            <div class="fb-video"
-                 data-href="https://www.facebook.com/reel/901652265486031"
-                 data-width="900"
-                 data-show-text="false"
-                 data-autoplay="true">
-            </div>
+            <video autoplay muted loop controls playsinline preload="auto">
+                <source src="{{ asset('videos/products.mp4') }}" type="video/mp4">
+                Your browser doesn't support video playback.
+            </video>
+        </div>
+        <div>
+            <h2>See our products in action</h2>
+            <p>Watch our waterproof coating turn a plain cardboard box into a water tank.</p>
+            <p>Call or message us on Globe &amp; Viber for a free inspection.</p>
+            <a href="{{ route('contact') }}" class="btn btn-copper">Request a free inspection</a>
         </div>
     </div>
 </section>

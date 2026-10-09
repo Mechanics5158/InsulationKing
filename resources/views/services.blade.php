@@ -1,25 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'Services — Insulation King')
+@section('title', 'Services Insulation King')
+@section('body-class', 'page-services')
 
 @section('content')
 
 <section class="page-hero">
     <div class="wrap">
-        <h1>Insulation, waterproofing, and coatings — as one connected system</h1>
+        <h1>Insulation, waterproofing, and coatings as one connected system</h1>
         <p>Every service below can be installed on its own, but they're designed to work together as a single building envelope.</p>
     </div>
 </section>
 
-<section style="padding-top:0; padding-bottom:0;">
-    <div class="wrap">
+{{-- ============ VIDEO ============
+     File: public/videos/services.mp4 --}}
+<section class="on-sand">
+    <div class="wrap reel-split">
         <div class="reel-banner">
-            <div class="fb-video"
-                 data-href="https://www.facebook.com/reel/3019697534854692"
-                 data-width="900"
-                 data-show-text="false"
-                 data-autoplay="true">
-            </div>
+            <video autoplay muted loop controls playsinline preload="auto">
+                <source src="{{ asset('videos/services.mp4') }}" type="video/mp4">
+                Your browser doesn't support video playback.
+            </video>
+        </div>
+        <div>
+            <h2>See our work in action</h2>
+            <p>Watch our crew apply thermal roof coating on real roofs and buildings.</p>
+            <p>Call or message us on Globe &amp; Viber for a free inspection.</p>
+            <a href="{{ route('contact') }}" class="btn btn-copper">Request a free inspection</a>
         </div>
     </div>
 </section>
@@ -31,7 +38,7 @@
             <p>Rigid board and spray-applied systems sized to your roof's real thermal load, not a generic thickness.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-             <img src="{{ asset('images/services/roof.jpg') }}" alt="Roof insulation installation" hint="Add project photo" />
+            <img src="{{ asset('images/services/roof.jpg') }}" alt="Roof insulation installation" />
             <div>
                 <ul>
                     <li>Site-specific thermal assessment before we quote anything</li>
@@ -70,7 +77,7 @@
     <div class="wrap">
         <div class="section-head">
             <h2>Waterproofing</h2>
-            <p>Fluid-applied and sheet membrane systems engineered around where your building actually leaks — not just the obvious spots.</p>
+            <p>Fluid-applied and sheet membrane systems engineered around where your building actually leaks not just the obvious spots.</p>
         </div>
         <div class="service-row" style="border-top:none;">
             <img src="{{ asset('images/services/waterproofing.jpg') }}" alt="Add project photo" />
@@ -99,7 +106,7 @@
                 <ul>
                     <li>Heat-reflective coatings that lower roof surface temperature</li>
                     <li>Dirt, algae, and mold-resistant surface finish</li>
-                    <li>UV-stable — protects insulation and membranes from breakdown</li>
+                    <li>UV-stable protects insulation and membranes from breakdown</li>
                     <li>Applicable to roofs, walls, and metal cladding</li>
                     <li>Extends the service life of the layers beneath it</li>
                 </ul>

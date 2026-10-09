@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — Insulation King')
+@section('title', 'Contact Insulation King')
 
 @section('content')
 
@@ -49,7 +49,7 @@
                             <option value="exterior-insulation">Exterior Insulation</option>
                             <option value="waterproofing">Waterproofing</option>
                             <option value="nano-coating">Nano-Tech Coating</option>
-                            <option value="not-sure">Not sure — need advice</option>
+                            <option value="not-sure">Not sure need advice</option>
                         </select>
                     </div>
                     <div class="field full">
@@ -89,7 +89,7 @@
                     allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Insulation King location — World Trade Exchange Bldg., Binondo, Manila">
+                    title="Insulation King location World Trade Exchange Bldg., Binondo, Manila">
                 </iframe>
             </div>
         </div>

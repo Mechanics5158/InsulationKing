@@ -1,19 +1,18 @@
 /* ===========================================================
-   Insulation King — Brand Tokens
-   Palette matched to the logo: navy, red, yellow.
+   Insulation King — Brand Tokens (navy, red, yellow)
    =========================================================== */
 :root {
   --graphite: #14205e;       /* deep navy */
   --graphite-soft: #2b3b8c;  /* lighter navy */
-  --sand: #fff3b0;           /* soft yellow tint for alternating sections */
-  --sand-light: #fffdf5;     /* main page background */
-  --copper: #e4202c;         /* red — primary buttons/accents */
+  --sand: #fff3b0;           /* soft yellow tint */
+  --sand-light: #fffdf5;     /* page background */
+  --copper: #e4202c;         /* red: buttons/accents (white on it is ~4.63:1, don't darken) */
   --copper-dark: #b8161f;    /* red hover */
-  --teal: #ffd400;           /* brand yellow */
+  --teal: #ffe100;           /* brand yellow */
   --ink: #14205e;
-  --muted: #3f4066;          /* body text on light backgrounds */
-  --muted-soft: #55588a;     /* small/secondary text */
-  --on-dark-muted: #cfd0f0;  /* text on navy */
+  --muted: #3f4066;
+  --muted-soft: #55588a;
+  --on-dark-muted: #cfd0f0;
   --line: rgba(20, 32, 94, 0.14);
   --line-light: rgba(255, 255, 255, 0.18);
 
@@ -22,56 +21,43 @@
 
   --max-w: 1160px;
 
-  /* ---- Image aspect ratios, keyed by purpose ----
-     aspect-ratio (not a fixed px height) so every box stays
-     proportional at any card width, including the 1-column
-     mobile layouts where a fixed height used to look squashed. */
-  --ratio-hero-banner: 21 / 9;   /* big hero / page-header illustration */
-  --ratio-gallery: 4 / 3;        /* project gallery cards */
-  --ratio-visit-photo: 4 / 3;    /* "visit us" location photos */
-  --ratio-team: 1 / 1;           /* team member portraits (square) */
-  --ratio-carousel: 4 / 3;       /* carousel slide media */
-  --ratio-service: 4 / 3;        /* service-row illustrations, if any */
-  --ratio-default: 16 / 10;      /* any other placeholder, no specific context */
+  --ratio-hero-banner: 21 / 9;
+  --ratio-gallery: 4 / 3;
+  --ratio-visit-photo: 4 / 3;
+  --ratio-team: 1 / 1;
+  --ratio-carousel: 4 / 3;
+  --ratio-service: 4 / 3;
+  --ratio-default: 16 / 10;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
+/* Per-page background: set --page-bg via a body class (e.g. page-about). */
 body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-
-  /* ---- Site-wide background photo ----
-     Shows through in neutral areas only (hero, plain sections, forms,
-     about/visit content) — anywhere that doesn't already set its own
-     background (nav, .on-dark, .on-sand, .cta-band, .page-hero, footer
-     all keep their solid colors and sit on top of this).
-     The tint layer under the photo keeps body text at safe contrast —
-     without it, --ink text on a busy photo can drop below readable.
-     Swap the url() below for your real photo when it's ready. */
-  background-color: var(--sand-light); /* fallback while the photo loads / if it fails */
+  background-color: var(--sand-light);
   background-image:
     linear-gradient(rgba(255, 253, 245, 0.88), rgba(255, 253, 245, 0.88)),
-    url("images/misc/bg-photo.jpg");
+    var(--page-bg, url("images/misc/bg-photo.jpg"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-/* iOS Safari handles background-attachment: fixed poorly (jank, sometimes
-   detaches from the viewport) — fall back to normal scrolling there. */
-@media (max-width: 900px) {
-  body { background-attachment: scroll; }
-}
+body.page-home     { --page-bg: url("images/bg/home.jpg"); }
+body.page-about    { --page-bg: url("images/bg/about.jpg"); }
+body.page-services { --page-bg: url("images/bg/services.jpg"); }
+body.page-products { --page-bg: url("images/bg/products.jpg"); }
+body.page-visit    { --page-bg: url("images/bg/visit.jpg"); }
+body.page-contact  { --page-bg: url("images/bg/contact.jpg"); }
 
 img { max-width: 100%; display: block; }
-
 a { color: inherit; text-decoration: none; }
 
 h1, h2, h3, h4 {
@@ -85,13 +71,8 @@ h1, h2, h3, h4 {
 
 p { max-width: 62ch; }
 
-.wrap {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 28px;
-}
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
 
-/* Keyboard focus */
 a:focus-visible, button:focus-visible, summary:focus-visible {
   outline: 3px solid var(--teal);
   outline-offset: 3px;
@@ -109,16 +90,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-size: 0.95rem;
   border: 1.5px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease,
+              color 0.15s ease, box-shadow 0.15s ease;
 }
-.btn:active { transform: translateY(1px); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20, 32, 94, 0.18); }
+.btn:active { transform: none; box-shadow: none; }
 
-/* White on --copper checks out at ~4.63:1 (WCAG AA, ≥4.5:1 for normal text) —
-   fine as-is, but it's close to the line, so don't darken --copper further
-   without rechecking contrast. --copper-dark on hover is safely above AA. */
 .btn-copper { background: var(--copper); color: #fff; }
 .btn-copper:hover { background: var(--copper-dark); }
-
 .btn-outline-dark { border-color: var(--graphite); color: var(--graphite); }
 .btn-outline-dark:hover { background: var(--graphite); color: #fff; }
 
@@ -127,10 +106,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 253, 245, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line);
+  background: var(--teal);
+  border-bottom: 1px solid rgba(20, 32, 94, 0.2);
+  transition: box-shadow 0.25s ease;
 }
+.nav.is-scrolled { box-shadow: 0 4px 18px rgba(20, 32, 94, 0.1); }
 .nav .wrap {
   display: flex;
   align-items: center;
@@ -146,6 +126,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-size: 1.15rem;
   color: var(--graphite);
 }
+.brand-mark { height: 44px; width: auto; max-width: 260px; object-fit: contain; flex: none; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -159,20 +140,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-bottom: 2px solid transparent;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
-.nav-links a:hover, .nav-links a.active {
-  color: var(--copper-dark);
-  border-color: var(--copper);
-}
-/* This duplicate Contact Us link only exists for mobile (see the matching
-   .nav-cta-contact hide inside the 640px block below) — on desktop the
-   real button in .nav-cta already covers it, so hide the in-list version
-   there. Scoped to a min-width query (not a bare display:none) so that
-   whatever mechanism your nav-toggle JS uses to reveal .nav-links on
-   mobile also reveals this link automatically, without needing to know
-   that JS's exact class/selector here. */
-@media (min-width: 641px) {
-  .nav-links-contact { display: none; }
-}
+.nav-links a:hover, .nav-links a.active { color: var(--copper-dark); border-color: var(--copper); }
 .nav-cta { display: flex; align-items: center; gap: 22px; }
 .nav-toggle {
   display: none;
@@ -185,40 +153,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .nav-toggle span { width: 24px; height: 2px; background: var(--graphite); display: block; }
 
-/* Full logo (icon + wordmark) in the navbar — sized by height so it scales
-   with its own aspect ratio instead of being forced into a square crop.
-   If your HTML still has separate icon + text spans next to this, remove
-   them: the image already contains both. */
-.brand-mark {
-  height: 44px;
-  width: auto;
-  max-width: 260px;
-  object-fit: contain;
-  flex: none;
+/* Mobile-only duplicate Contact link */
+@media (min-width: 641px) {
+  .nav-links-contact { display: none; }
 }
 
 /* ---------------- Hero ---------------- */
-/* No background here — this lets the body's photo show through directly,
-   since the hero is one of the "neutral" areas the photo should appear in. */
 .hero { padding: 56px 0 0; }
 .hero .wrap {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 48px;
-  align-items: center;
+  align-items: stretch;
   padding-bottom: 48px;
 }
-.hero h1 {
-  font-size: clamp(2.1rem, 4vw, 3.15rem);
-  color: var(--graphite);
-  max-width: 14ch;
-}
-.hero .lede {
-  font-size: 1.08rem;
-  color: var(--muted);
-  max-width: 46ch;
-  margin-bottom: 30px;
-}
+.hero h1 { font-size: clamp(2.1rem, 4vw, 3.15rem); color: var(--graphite); max-width: 14ch; }
+.hero .lede { font-size: 1.08rem; color: var(--muted); max-width: 46ch; margin-bottom: 30px; }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
 .hero-trust {
   display: flex;
@@ -237,21 +187,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-radius: 4px;
   padding: 30px 26px;
   color: #fff;
+  display: flex;
+  flex-direction: column;
 }
-.layer-diagram .cap { font-size: 0.8rem; color: var(--on-dark-muted); margin-bottom: 18px; }
+.layer-diagram .cap { font-size: 0.8rem; color: var(--on-dark-muted); margin-bottom: 8px; }
 .layer-row {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 13px 0;
   border-bottom: 1px solid var(--line-light);
+  transition: padding-left 0.2s ease;
 }
 .layer-row:last-child { border-bottom: none; }
+.layer-row:hover { padding-left: 6px; }
 .layer-swatch { width: 34px; height: 34px; border-radius: 2px; flex: none; }
 .layer-row .name { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
 .layer-row .desc { font-size: 0.82rem; color: var(--on-dark-muted); }
 
-/* Strip naming the four layers */
 .layer-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -270,7 +224,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .layer-strip .n { opacity: 0.65; font-weight: 500; }
 
-/* ---------------- Section basics ---------------- */
+/* ---------------- Sections ---------------- */
 section { padding: 56px 0; }
 section[id] { scroll-margin-top: 90px; }
 
@@ -288,7 +242,7 @@ section[id] { scroll-margin-top: 90px; }
 .on-dark h2 { color: #fff; }
 .on-dark p { color: var(--on-dark-muted); }
 .on-sand { background: var(--sand); }
-.on-sand p, .on-sand .section-head p { color: var(--muted); }
+.on-sand p { color: var(--muted); }
 
 /* ---------------- Services ---------------- */
 .service-row {
@@ -297,8 +251,10 @@ section[id] { scroll-margin-top: 90px; }
   gap: 40px;
   padding: 30px 0;
   border-top: 1px solid var(--line);
+  transition: background-color 0.25s ease;
 }
 .service-row:last-child { border-bottom: 1px solid var(--line); }
+.service-row:hover { background: rgba(255, 225, 0, 0.12); }
 .service-row .idx {
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -312,7 +268,6 @@ section[id] { scroll-margin-top: 90px; }
 .service-row p { color: var(--muted); }
 .service-row ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.93rem; }
 .service-row li { margin-bottom: 6px; }
-.service-row :is(.img-holder, img) { --box-ratio: var(--ratio-service); }
 
 /* ---------------- Stats ---------------- */
 .stats {
@@ -327,12 +282,14 @@ section[id] { scroll-margin-top: 90px; }
 .stat .label { font-size: 0.88rem; color: var(--on-dark-muted); margin-top: 4px; }
 
 /* ---------------- Process ---------------- */
-.process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.process { display: grid; grid-template-columns: repeat(4, 1fr); }
 .process-step {
   padding: 26px 26px 0 22px;
   border-left: 2px solid var(--line);
   position: relative;
+  transition: border-color 0.2s ease;
 }
+.process-step:hover { border-left-color: var(--copper); }
 .process-step .step-num {
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -343,40 +300,23 @@ section[id] { scroll-margin-top: 90px; }
 .process-step h4 { font-size: 1.05rem; color: var(--graphite); }
 .process-step p { font-size: 0.9rem; color: var(--muted); }
 
-/* ---- FB Reel banner wrapper ------------------------------------------
-   Facebook's docs explicitly warn against CSS-forcing the plugin's own
-   iframe size ("may result in display errors") — it manages its own
-   responsive sizing internally and scales to the parent's width on
-   mobile automatically. So this wrapper only constrains width/centering;
-   it does NOT set a fixed aspect-ratio or force the iframe's dimensions,
-   unlike the self-hosted <video> version below. */
-.reel-banner {
-  width: 100%;
-  max-width: 900px; /* upper limit for wide screens only — Facebook's plugin
-                        auto-shrinks to fit its parent's width on narrow
-                        viewports regardless of this number, so raising it
-                        makes desktop bigger without touching mobile at all.
-                        Also update data-width to match on the .fb-video
-                        div in Blade. */
-  margin: 40px auto; /* breathing room above/below — the sections that use
-                         this pattern set `padding-top:0; padding-bottom:0;`
-                         inline (to remove the section's own spacing around
-                         the video specifically), which otherwise leaves the
-                         reel sitting flush against whatever's directly
-                         above it, e.g. touching a .page-hero's navy block
-                         with zero gap. */
-}
-
-/* Self-hosted <video> fallback (used instead of .fb-video when you're not
-   relying on Facebook's embed) still gets the fixed banner box, since a
-   plain <video> element has no competing internal sizing logic to fight. */
+/* ---------------- Video / reel ---------------- */
+.reel-banner { width: 100%; max-width: 900px; margin: 40px auto; }
 .reel-banner video {
   width: 100%;
   aspect-ratio: var(--ratio-hero-banner);
   object-fit: cover;
   border-radius: 3px;
 }
-/* Base placeholder: default footprint for any spot with no more specific rule below */
+.reel-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.reel-split .reel-banner { margin: 0; max-width: none; }
+
+/* ---------------- Images ---------------- */
 .img-holder {
   background: repeating-linear-gradient(135deg, #fff8cf, #fff8cf 10px, var(--sand) 10px, var(--sand) 20px);
   border: 1.5px dashed rgba(20, 32, 94, 0.35);
@@ -396,45 +336,45 @@ section[id] { scroll-margin-top: 90px; }
 .img-holder .label { font-size: 0.82rem; font-weight: 600; font-family: var(--font-body); }
 .img-holder .hint { font-size: 0.72rem; color: var(--muted-soft); }
 
-/* ---- Shared "media box" behavior -----------------------------------------
-   One rule set for every spot where a placeholder gets swapped for a real
-   photo (gallery, team, carousel, visit photos, hero banner). Each context
-   below only needs to set --box-ratio; width/object-fit/radius stay in sync
-   automatically, so a new gallery-like section just needs one line.
-
-   aspect-ratio reserves the box's shape immediately, but the browser still
-   doesn't know the image's own pixel size until it downloads, so also add
-   width/height attributes (the image's real intrinsic size, not the display
-   size) and loading="lazy" on each <img> in the HTML/Blade templates —
-   e.g. <img src="..." width="800" height="600" loading="lazy">.
-   That's what actually prevents layout shift and defers off-screen loads;
-   CSS here can't set either one. */
+/* Shared media box: each context only sets --box-ratio */
 .gallery-grid :is(.img-holder, img),
 .team-card :is(.img-holder, img),
 .carousel-slide :is(.img-holder, img),
 .visit-photo-grid :is(.img-holder, img),
 .service-row :is(.img-holder, img),
-.img-holder-banner,
-img.img-holder-banner {
+.img-holder-banner {
   width: 100%;
   aspect-ratio: var(--box-ratio, var(--ratio-default));
   object-fit: cover;
   border-radius: 3px;
   display: block;
 }
-
-.img-holder-banner,
-img.img-holder-banner { --box-ratio: var(--ratio-hero-banner); }
+.img-holder-banner { --box-ratio: var(--ratio-hero-banner); }
 .img-holder-banner svg { width: 42px; height: 42px; }
 .img-holder-banner .label { font-size: 0.95rem; }
 
-/* ---- Gallery: every card — placeholder or real photo — is identical ---- */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-.gallery-grid :is(.img-holder, img) { --box-ratio: var(--ratio-gallery); }
+.service-row :is(.img-holder, img)       { --box-ratio: var(--ratio-service); }
+.gallery-grid :is(.img-holder, img)      { --box-ratio: var(--ratio-gallery); }
+.carousel-slide :is(.img-holder, img)    { --box-ratio: var(--ratio-carousel); }
+.visit-photo-grid :is(.img-holder, img)  { --box-ratio: var(--ratio-visit-photo); }
+.team-card :is(.img-holder, img)         { --box-ratio: var(--ratio-team); margin-bottom: 12px; }
+
+/* Hover zoom, clipped to the card */
+.gallery-grid > *,
+.carousel-slide,
+.team-card,
+.visit-photo-grid > * { overflow: hidden; border-radius: 3px; }
+.gallery-grid img,
+.carousel-slide img,
+.team-card img,
+.visit-photo-grid img { transition: transform 0.4s ease; }
+.gallery-grid > *:hover img,
+.carousel-slide:hover img,
+.team-card:hover img,
+.visit-photo-grid > *:hover img { transform: scale(1.05); }
+
+/* ---------------- Gallery ---------------- */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .gallery-cap { margin-top: 10px; font-size: 0.88rem; color: var(--muted); }
 .gallery-cap strong { display: block; color: var(--graphite); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
 
@@ -452,7 +392,6 @@ img.img-holder-banner { --box-ratio: var(--ratio-hero-banner); }
 .carousel-viewport::-webkit-scrollbar { height: 6px; }
 .carousel-viewport::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .carousel-slide { flex: 0 0 clamp(230px, 30vw, 340px); scroll-snap-align: start; }
-.carousel-slide :is(.img-holder, img) { --box-ratio: var(--ratio-carousel); }
 .carousel-nav { display: flex; gap: 10px; margin-top: 18px; }
 .carousel-btn {
   width: 40px;
@@ -500,23 +439,17 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .footer-grid ul { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; }
 .footer-grid li { margin-bottom: 9px; }
 .footer-grid a:hover { color: var(--teal); }
-
-/* Footer wordmark logo — sized explicitly so its own PNG dimensions never
-   dictate layout. Without this, an unconstrained <img> only gets capped by
-   the global `img { max-width:100% }` rule, which lets it grow as wide as
-   its column allows instead of staying a fixed, deliberate size. */
-.brand-logo {
-  height: 36px;
-  width: auto;
-  max-width: 220px;
-  object-fit: contain;
+.footer-grid li a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: color 0.15s ease, background-size 0.25s ease;
 }
+.footer-grid li a:hover { background-size: 100% 1px; }
 
-/* Social icons — explicit sizing so the raw <svg> tags (which have no
-   width/height attributes of their own) don't fall back to the browser's
-   default SVG box (~300x150px). That default-size fallback is what was
-   making the Facebook/Instagram icons render oversized, most noticeably
-   on the single-column mobile footer layout. */
+.brand-logo { height: 36px; width: auto; max-width: 220px; object-fit: contain; }
+
 .social-links { display: flex; gap: 12px; margin-top: 16px; }
 .social-links a {
   width: 36px;
@@ -533,20 +466,9 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .social-links a:hover { background: var(--teal); border-color: var(--teal); color: var(--graphite); }
 .social-links svg { width: 18px; height: 18px; flex: none; }
 
-.social-fb {
-  color: #1877F2;
-  border-color: rgba(24, 119, 242, 0.4);
-}
-.social-fb:hover {
-  background: #1877F2;
-  border-color: #1877F2;
-  color: #fff;
-}
-
-.social-ig {
-  color: #E1306C;
-  border-color: rgba(225, 48, 108, 0.4);
-}
+.social-fb { color: #1877F2; border-color: rgba(24, 119, 242, 0.4); }
+.social-fb:hover { background: #1877F2; border-color: #1877F2; color: #fff; }
+.social-ig { color: #E1306C; border-color: rgba(225, 48, 108, 0.4); }
 .social-ig:hover {
   background: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
   border-color: transparent;
@@ -564,7 +486,16 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 }
 
 /* ---------------- Inner page hero ---------------- */
-.page-hero { background: var(--graphite); color: #fff; padding: 52px 0; }
+.page-hero {
+  background-color: var(--graphite);
+  background-image:
+    linear-gradient(rgba(20, 32, 94, 0.82), rgba(20, 32, 94, 0.82)),
+    var(--page-bg, none);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 52px 0;
+}
 .page-hero h1 { color: #fff; max-width: 22ch; font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
 .page-hero p { color: var(--on-dark-muted); max-width: 56ch; }
 
@@ -588,10 +519,7 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
   border-color: var(--copper);
   box-shadow: 0 0 0 3px rgba(228, 32, 44, 0.15);
 }
-/* Visually hides the honeypot field, but a screen reader can still tab into
-   it since CSS alone doesn't remove it from the tab order. On the actual
-   <input class="hp-field">, also add in the HTML:
-   aria-hidden="true" tabindex="-1" autocomplete="off" */
+/* Honeypot: also add aria-hidden="true" tabindex="-1" autocomplete="off" on the input */
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .alert { padding: 14px 18px; border-radius: 3px; margin-bottom: 24px; font-size: 0.92rem; }
@@ -609,16 +537,15 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .hours-table td { padding: 8px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
 .hours-table td:first-child { font-weight: 600; color: var(--graphite); width: 40%; }
 .visit-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
-.visit-photo-grid :is(.img-holder, img) { --box-ratio: var(--ratio-visit-photo); }
 
 /* ---------------- About ---------------- */
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.value-card { border-top: 3px solid var(--copper); padding-top: 18px; }
+.value-card { border-top: 3px solid var(--copper); padding-top: 18px; transition: border-color 0.2s ease; }
+.value-card:hover { border-top-color: var(--graphite); }
 .value-card h4 { color: var(--graphite); font-size: 1.05rem; }
 .value-card p { font-size: 0.92rem; color: var(--muted); }
 
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.team-card :is(.img-holder, img) { --box-ratio: var(--ratio-team); margin-bottom: 12px; }
 .team-card .name { font-family: var(--font-display); font-weight: 600; color: var(--graphite); }
 .team-card .role { font-size: 0.85rem; color: var(--muted-soft); }
 
@@ -635,9 +562,8 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
   filter: grayscale(0.2) contrast(1.05);
 }
 
-/* Map click-to-zoom */
 .map-click-wrap { position: relative; cursor: zoom-in; }
-.map-click-wrap iframe { pointer-events: none; } /* clicks go to the overlay, not the map */
+.map-click-wrap iframe { pointer-events: none; }
 .map-zoom-hint {
   position: absolute;
   inset: 0;
@@ -699,43 +625,254 @@ footer { background: var(--graphite); color: var(--on-dark-muted); padding: 52px
 .admin-table tbody tr:hover { background: rgba(255, 212, 0, 0.12); }
 .admin-table__message { max-width: 320px; }
 
+/* ---------------- Before / After slider (gallery page) ---------------- */
+.ba-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.ba-card { margin: 0; }
+.ba-compare {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: var(--ratio-gallery);
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--graphite);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ba-compare:focus-within { outline: 3px solid var(--teal); outline-offset: 3px; }
+.ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.ba-img--before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(20, 32, 94, 0.25);
+  pointer-events: none;
+}
+.ba-handle::after {
+  content: "\2194";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--graphite);
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(20, 32, 94, 0.35);
+}
+.ba-tag {
+  position: absolute;
+  top: 12px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.ba-tag--before { left: 12px;  background: var(--graphite); color: #fff; }
+.ba-tag--after  { right: 12px; background: var(--teal);     color: var(--graphite); }
+.ba-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+/* ---------------- Effects (need js/effects.js) ---------------- */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero h1,
+.hero .lede,
+.hero-actions,
+.hero-trust,
+.layer-diagram,
+.page-hero h1,
+.page-hero p { animation: fade-up 0.7s ease both; }
+.hero .lede,
+.page-hero p    { animation-delay: 0.1s; }
+.layer-diagram,
+.hero-actions   { animation-delay: 0.2s; }
+.hero-trust     { animation-delay: 0.3s; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Lightbox */
+.zoomable { cursor: zoom-in; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 16, 48, 0.92);
+}
+.lightbox.is-open { display: flex; animation: lightbox-in 0.2s ease; }
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+.lightbox [hidden] { display: none; }
+.lightbox-figure {
+  margin: 0;
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.lightbox-cap { color: #fff; font-size: 0.92rem; text-align: center; min-height: 1.2em; }
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.lightbox-close { top: 16px; right: 16px; }
+.lightbox-nav   { top: 50%; transform: translateY(-50%); }
+.lightbox-prev  { left: 16px; }
+.lightbox-next  { right: 16px; }
+.lightbox-close:hover,
+.lightbox-nav:hover { background: var(--copper); border-color: var(--copper); }
+.lightbox svg { width: 20px; height: 20px; }
+body.lightbox-open { overflow: hidden; }
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--copper), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Back-to-top button */
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: var(--copper);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(20, 32, 94, 0.3);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.15s ease;
+  z-index: 90;
+}
+.back-to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.back-to-top:hover { background: var(--copper-dark); }
+.back-to-top svg { width: 20px; height: 20px; }
+
 /* ---------------- Responsive ---------------- */
 @media (max-width: 900px) {
-  .hero .wrap { grid-template-columns: 1fr; }
-  .section-head { grid-template-columns: 1fr; }
-  .service-row { grid-template-columns: 1fr; }
-  .service-row .desc-cols { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .process { grid-template-columns: repeat(2, 1fr); gap: 26px; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .visit-grid { grid-template-columns: 1fr; }
-  .value-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  body { background-attachment: scroll; }  /* iOS Safari handles fixed poorly */
+  .hero .wrap,
+  .section-head,
+  .service-row,
+  .service-row .desc-cols,
+  .contact-grid,
+  .visit-grid,
+  .value-grid,
+  .reel-split,
+  .ba-grid { grid-template-columns: 1fr; }
+  .stats,
+  .gallery-grid,
+  .footer-grid,
+  .team-grid,
   .layer-strip { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .process { grid-template-columns: repeat(2, 1fr); gap: 26px; }
 }
+
 @media (max-width: 640px) {
   section { padding: 40px 0; }
-  .page-hero { padding: 32px 0; } /* class beats the plain `section` rule above at equal specificity tier, so it needs its own override here to actually shrink on mobile */
+  .page-hero { padding: 32px 0; }
   .hero { padding-top: 40px; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
-  .nav-cta-contact { display: none; } /* the button — replaced on mobile by .nav-links-contact inside the menu, so logo + toggle are the only things in the top row */
-  .gallery-grid { grid-template-columns: 1fr; }
-  .form-grid { grid-template-columns: 1fr; gap: 0; } /* avoid double spacing with .field's own margin-bottom below */
+  .nav-cta-contact { display: none; }
+  .gallery-grid,
+  .process,
+  .footer-grid,
+  .team-grid,
+  .visit-photo-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; gap: 0; }
   .field { margin-bottom: 16px; }
   .contact-info-card { padding: 20px; }
   .contact-grid { gap: 30px; }
-  .process { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr; }
-  .visit-photo-grid { grid-template-columns: 1fr; }
+  .reel-banner { max-width: none; margin: 0; }
+
+  .lightbox-img { max-height: calc(100vh - 170px); }
+  .lightbox-nav  { top: auto; bottom: 18px; transform: none; }
+  .lightbox-prev { left: calc(50% - 54px); }
+  .lightbox-next { right: calc(50% - 54px); }
 }
 
-/* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .carousel-viewport { scroll-behavior: auto; }
-  * { transition: none !important; }
+  html, .carousel-viewport { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
 }

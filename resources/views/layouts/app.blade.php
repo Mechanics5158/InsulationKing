@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}">
     @stack('styles')
 </head>
-<body>
-
+<body class="@yield('body-class')">
+        
     @include('partials.navbar')
 
     <main>
@@ -30,6 +30,7 @@
     </script>
 
     <script src="{{ asset('js/site.js') }}"></script>
+    <script src="{{ asset('js/effects.js') }}?v={{ filemtime(public_path('js/effects.js')) }}" defer></script>
     @stack('scripts')
 </body>
-</html>
+</html>         

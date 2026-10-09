@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Visit Us — Insulation King')
+@section('title', 'Visit Us Insulation King')
 
 @section('content')
 
@@ -23,7 +23,7 @@
                     allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Insulation King location — World Trade Exchange Bldg., Binondo, Manila">
+                    title="Insulation King location World Trade Exchange Bldg., Binondo, Manila">
                 </iframe>
             </div>
 
@@ -71,7 +71,7 @@
     <div class="wrap">
         <div class="section-head">
             <h2>Prefer we come to you?</h2>
-            <p>Most inspections happen on-site anyway — send us your address and we'll schedule a visit.</p>
+            <p>Most inspections happen on-site anyway send us your address and we'll schedule a visit.</p>
         </div>
         <a href="{{ route('contact') }}" class="btn btn-outline-dark">Request a site inspection</a>
     </div>

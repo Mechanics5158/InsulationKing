@@ -1,25 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'About Us — Insulation King')
+@section('title', 'About Us Insulation King')
+@section('body-class', 'page-about')
 
 @section('content')
 
 <section class="page-hero">
     <div class="wrap">
         <h1>We started as roofers who got tired of watching good insulation fail from bad waterproofing</h1>
-        <p>Insulation King exists because the three jobs — insulation, waterproofing, and coating — kept being handled by three different contractors who never talked to each other.</p>
+        <p>Insulation King exists because the three jobs insulation, waterproofing, and coating kept being handled by three different contractors who never talked to each other.</p>
     </div>
 </section>
 
-<section style="padding-top:0; padding-bottom:0;">
-    <div class="wrap">
+{{-- ============ VIDEO ============
+     File: public/videos/about.mp4 --}}
+<section class="on-sand">
+    <div class="wrap reel-split">
         <div class="reel-banner">
-            <div class="fb-video"
-                 data-href="https://www.facebook.com/reel/429618689426780"
-                 data-width="900"
-                 data-show-text="false"
-                 data-autoplay="true">
-            </div>
+            <video autoplay muted loop controls playsinline preload="auto">
+                <source src="{{ asset('videos/about.mp4') }}" type="video/mp4">
+                Your browser doesn't support video playback.
+            </video>
+        </div>
+        <div>
+            <h2>See the results</h2>
+            <p>Watch a side-by-side heat test and the before-and-after roof temperatures.</p>
+            <p>Call or message us on Globe &amp; Viber for a free inspection.</p>
+            <a href="{{ route('contact') }}" class="btn btn-copper">Request a free inspection</a>
         </div>
     </div>
 </section>
@@ -31,7 +38,7 @@
             <p>We started out doing roof insulation. Within a few years, callbacks taught us the truth about this industry.</p>
         </div>
         <p style="max-width:68ch; font-size:1.02rem; color:#3f3e39;">
-            Most of our early callbacks weren't insulation failures — they were water finding its way in through a
+            Most of our early callbacks weren't insulation failures they were water finding its way in through a
             membrane that a different crew had installed, or a coating going on before the substrate was properly
             sealed. So we brought waterproofing in-house. Then, as reflective and nanoceramic coatings matured, we
             added that too. Today Insulation King handles the full building envelope as one coordinated job, with
@@ -57,7 +64,7 @@
             </div>
             <div class="value-card">
                 <h4>Built for the climate you're in</h4>
-                <p>Insulation thickness and coating choice change based on your building's exposure — we spec for your actual conditions, not a catalog default.</p>
+                <p>Insulation thickness and coating choice change based on your building's exposure we spec for your actual conditions, not a catalog default.</p>
             </div>
         </div>
     </div>
@@ -80,7 +87,7 @@
                 <img src="{{ asset('images/about/pic3.jpg') }}" alt="Add headshot" />
             </div>
             <div class="team-card">
-                <img src="{{ asset('images/about/pic4.jpg') }}" alt="Add headshot" /> 
+                <img src="{{ asset('images/about/pic4.jpg') }}" alt="Add headshot" />
             </div>
         </div>
     </div>

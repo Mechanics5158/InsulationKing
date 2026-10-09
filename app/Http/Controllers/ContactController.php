@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewContactMessage;
 use App\Models\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -23,10 +25,16 @@ class ContactController extends Controller
             'message' => ['required', 'string', 'max:5000'],
         ]);
 
-        ContactMessage::create($validated);
+        // 1. Save first so the inquiry is never lost
+        $contactMessage = ContactMessage::create($validated);
 
-        // To actually receive these by email instead of (or as well as) the
-        // database, add a Mailable here and call Mail::to('you@example.com')->send(...).
+        // 2. Email the admin. A mail failure is logged but won't break the form.
+        try {
+            Mail::to(config('mail.admin_notify'))
+                ->send(new NewContactMessage($contactMessage));
+        } catch (\Throwable $e) {
+            report($e); // see storage/logs/laravel.log
+        }
 
         return redirect()
             ->route('contact')
