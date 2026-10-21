@@ -29,4 +29,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/messages', [AdminController::class, 'messages'])
         ->middleware('admin.auth')
         ->name('messages');
+   Route::get('/phpcheck', fn () => [
+       'ini_file'    => php_ini_loaded_file(),
+       'upload_max'  => ini_get('upload_max_filesize'),
+       'post_max'    => ini_get('post_max_size'),
+   ]);
 });

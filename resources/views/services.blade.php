@@ -34,18 +34,18 @@
 <section id="roof-insulation">
     <div class="wrap">
         <div class="section-head">
-            <h2>Roof Insulation</h2>
-            <p>Rigid board and spray-applied systems sized to your roof's real thermal load, not a generic thickness.</p>
+            <h2>Roof Coating &amp; Sealing</h2>
+            <p>A continuous white coating over metal roofing, with fasteners, ridges, and roof edges sealed as part of the same job.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <img src="{{ asset('images/services/roof.jpg') }}" alt="Roof insulation installation" />
+            <img src="{{ asset('images/services/roof.jpg') }}" alt="White coated corrugated metal roof with sealed ridge and parapet edge" />
             <div>
                 <ul>
-                    <li>Site-specific thermal assessment before we quote anything</li>
-                    <li>Rigid foam board, mineral wool, and spray-applied options</li>
-                    <li>Compatible with re-roofing and retrofit projects</li>
-                    <li>Reduces both heating and cooling costs year-round</li>
-                    <li>Detailed at parapets, drains, and penetrations to avoid cold spots</li>
+                    <li>Seamless light-colored coating over ribbed metal roof sheets</li>
+                    <li>Screw heads and fasteners covered and sealed</li>
+                    <li>Ridge caps and roof-edge upturns coated, not left bare</li>
+                    <li>Light surface reflects sunlight instead of absorbing it</li>
+                    <li>Suited to commercial and industrial metal roofs</li>
                 </ul>
             </div>
         </div>
@@ -55,18 +55,17 @@
 <section class="on-sand" id="exterior-insulation">
     <div class="wrap">
         <div class="section-head">
-            <h2>Exterior Wall Insulation</h2>
-            <p>Continuous insulation wrapped around the outside of the building, so you're not losing interior space to furring and framing.</p>
+            <h2>Exterior Wall Protection</h2>
+            <p>Large concrete walls take the sun, rain, and algae every day. We clean, prep, and protect them.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <img src="{{ asset('images/services/wall.jpg') }}" alt="Add project photo" />
+            <img src="{{ asset('images/services/wall.jpg') }}" alt="Large concrete perimeter wall with weathering stains" />
             <div>
                 <ul>
-                    <li>EIFS and rendered exterior insulation finish systems</li>
-                    <li>Ready for cladding, render, or paint finishes</li>
-                    <li>Eliminates thermal bridging at studs and slab edges</li>
-                    <li>Noticeably reduces HVAC load in extreme seasons</li>
-                    <li>Suitable for both new builds and facade retrofits</li>
+                    <li>Cleaning and surface prep for weathered concrete walls</li>
+                    <li>Coverage across large panel walls, joints included</li>
+                    <li>Targets dark streaks and stains from dirt and algae</li>
+                    <li>Suitable for perimeter walls, warehouses, and building facades</li>
                 </ul>
             </div>
         </div>
@@ -77,17 +76,17 @@
     <div class="wrap">
         <div class="section-head">
             <h2>Waterproofing</h2>
-            <p>Fluid-applied and sheet membrane systems engineered around where your building actually leaks not just the obvious spots.</p>
+            <p>Water gets in at the details: laps, fasteners, flashings, and where the roof meets a wall. That is where we focus.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <img src="{{ asset('images/services/waterproofing.jpg') }}" alt="Add project photo" />
+            <img src="{{ asset('images/services/waterproofing.jpg') }}" alt="Coated metal roof with sealed flashing and wall junction on a commercial building" />
             <div>
                 <ul>
-                    <li>Roof, podium deck, terrace, and balcony membranes</li>
-                    <li>Below-grade and basement waterproofing</li>
-                    <li>Reinforced detailing at joints, drains, and penetrations</li>
-                    <li>Compatible as a base layer under nano-tech coatings</li>
-                    <li>Diagnostic leak tracing for existing moisture problems</li>
+                    <li>Continuous coating over sheet laps and ridges</li>
+                    <li>Sealed flashing where the roof meets walls and screens</li>
+                    <li>Fastener heads covered individually</li>
+                    <li>Coating carried up the roof edge to close the gap</li>
+                    <li>Works on roofs of occupied commercial buildings</li>
                 </ul>
             </div>
         </div>
@@ -98,17 +97,35 @@
     <div class="wrap">
         <div class="section-head">
             <h2>Nano-Tech Coatings</h2>
-            <p>A high-performance nanoceramic top layer that reflects heat, resists dirt and algae, and protects everything underneath from UV breakdown.</p>
+            <p>We check surface temperatures on site with an infrared thermometer, so results are measured, not guessed.</p>
         </div>
         <div class="service-row" style="border-top:none;">
-            <img src="{{ asset('images/services/nano.jpg') }}" alt="Add project photo" />
+            <img src="{{ asset('images/services/nano.jpg') }}" alt="Infrared thermometer reading 33.7°C on a coated metal sheet" />
             <div>
                 <ul>
-                    <li>Heat-reflective coatings that lower roof surface temperature</li>
-                    <li>Dirt, algae, and mold-resistant surface finish</li>
-                    <li>UV-stable protects insulation and membranes from breakdown</li>
-                    <li>Applicable to roofs, walls, and metal cladding</li>
-                    <li>Extends the service life of the layers beneath it</li>
+                    <li>On-site surface temperature readings with an infrared thermometer</li>
+                    <li>Applied on metal roof sheets, including colored finishes</li>
+                    <li>Heat-reflective coating to keep roof surfaces cooler</li>
+                    <li>Also used on walls and metal cladding</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <div class="section-head">
+            <h2>Homes too</h2>
+            <p>The same crew works on residential roofs, not just commercial buildings.</p>
+        </div>
+        <div class="service-row" style="border-top:none;">
+            <img src="{{ asset('images/services/project.jpg') }}" alt="Technician working on the roof of a two-storey house" />
+            <div>
+                <ul>
+                    <li>Pitched roofs on two-storey homes</li>
+                    <li>Roof inspected and treated from above, with no tearing off</li>
+                    <li>Free inspection before any quote</li>
                 </ul>
             </div>
         </div>

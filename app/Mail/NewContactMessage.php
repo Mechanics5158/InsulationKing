@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\ContactMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -34,4 +35,11 @@ class NewContactMessage extends Mailable
             view: 'emails.new-contact-message',
         );
     }
-}   
+
+    public function attachments(): array
+    {
+        return collect($this->contactMessage->photos ?? [])
+            ->map(fn ($path) => Attachment::fromStorageDisk('public', $path))
+            ->all();
+    }
+}

@@ -73,21 +73,29 @@
 <section>
     <div class="wrap">
         <div class="section-head">
-            <h2>The process of work</h2>
-            <p>A crew of certified installers and project leads, not day-labor turnover.</p>
+            <h2>The journey of your cement</h2>
+            <p>From storage to loading to delivery, handled by one team at every step.</p>
         </div>
         <div class="team-grid">
             <div class="team-card">
-                <img src="{{ asset('images/about/pic1.jpg') }}" alt="Add headshot" />
+                <img src="{{ asset('images/about/pic3.jpg') }}" alt="Stacked bags of cement stored under cover in a warehouse" />
+                <h4>1. Safe storage</h4>
+                <p>Bagged cement is stacked off the ground and kept under cover, away from rain.</p>
             </div>
             <div class="team-card">
-                <img src="{{ asset('images/about/pic2.jpg') }}" alt="Add headshot" />
+                <img src="{{ asset('images/about/pic2.jpg') }}" alt="Forklift loading bagged cement onto a flatbed truck" />
+                <h4>2. Careful loading</h4>
+                <p>A forklift moves pallets of bagged cement onto the truck bed at the loading dock.</p>
             </div>
             <div class="team-card">
-                <img src="{{ asset('images/about/pic3.jpg') }}" alt="Add headshot" />
+                <img src="{{ asset('images/about/pic4.jpg') }}" alt="Delivery truck at a warehouse loading bay" />
+                <h4>3. Ready to haul</h4>
+                <p>A flatbed truck is staged at the loading bay and prepared for dispatch.</p>
             </div>
             <div class="team-card">
-                <img src="{{ asset('images/about/pic4.jpg') }}" alt="Add headshot" />
+                <img src="{{ asset('images/about/pic1.jpg') }}" alt="Truck loading cement inside a warehouse at night" />
+                <h4>4. On time, day or night</h4>
+                <p>Loading and hauling continue after dark when a delivery schedule calls for it.</p>
             </div>
         </div>
     </div>

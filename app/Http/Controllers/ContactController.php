@@ -17,13 +17,30 @@ class ContactController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // Honeypot: real visitors never fill this hidden field, bots usually do.
+        // Pretend it worked so bots don't learn anything.
+        if ($request->filled('website')) {
+            return redirect()
+                ->route('contact')
+                ->with('status', "Thanks — we've received your request.");
+        }
+
         $validated = $request->validate([
-            'name'    => ['required', 'string', 'max:255'],
-            'email'   => ['required', 'email', 'max:255'],
-            'phone'   => ['nullable', 'string', 'max:40'],
-            'service' => ['nullable', 'string', 'max:100'],
-            'message' => ['required', 'string', 'max:5000'],
+            'name'          => ['required', 'string', 'max:255'],
+            'email'         => ['required', 'email', 'max:255'],
+            'phone'         => ['required', 'string', 'max:40'],
+            'service'       => ['nullable', 'in:roof-insulation,exterior-insulation,waterproofing,nano-coating,not-sure'],
+            'building_type' => ['required', 'in:house,commercial,warehouse,other'],
+            'location'      => ['required', 'string', 'max:150'],
+            'message'       => ['required', 'string', 'max:5000'],
+            'photos'        => ['nullable', 'array', 'max:4'],
+            'photos.*'      => ['image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
         ]);
+
+        // Store uploaded photos on the public disk and keep their paths
+        $validated['photos'] = collect($request->file('photos', []))
+            ->map(fn ($photo) => $photo->store('quote-photos', 'public'))
+            ->all();
 
         // 1. Save first so the inquiry is never lost
         $contactMessage = ContactMessage::create($validated);

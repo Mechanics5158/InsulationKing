@@ -12,5 +12,12 @@ class ContactMessage extends Model
         'phone',
         'service',
         'message',
+        'building_type',
+        'location',
+        'photos',
+    ];
+
+    protected $casts = [
+        'photos' => 'array',
     ];
 }

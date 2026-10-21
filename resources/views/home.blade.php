@@ -199,20 +199,24 @@
     <div class="wrap">
         <div class="section-head">
             <h2>Recent work</h2>
-            <p>A sample of roofs and facades we've insulated, sealed, and coated.</p>
+            <p>Roofs and facades we've prepped, sealed, and coated, from rusted metal sheets to large commercial roofs.</p>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid gallery-4">
             <div>
-                <img src="{{ asset('images/home/warehouseroof.jpg') }}" alt="Warehouse roof nano coating" />
-                <div class="gallery-cap"><strong>Logistics Warehouse</strong>Reflective nano coating, 4,200 m²</div>
+                <img src="{{ asset('images/home/warehouseroof.jpg') }}" alt="Crew applying reflective coating to a large warehouse roof" />
+                <div class="gallery-cap"><strong>Warehouse Roof Coating</strong>Crew applying a light reflective coating across a large low-slope metal roof</div>
             </div>
             <div>
-                <img src="{{ asset('images/home/apartment.jpg') }}" alt="Apartment facade insulation" />
-                <div class="gallery-cap"><strong>Riverside Apartments</strong>Exterior wall insulation retrofit</div>
+                <img src="{{ asset('images/home/apartment.jpg') }}" alt="Mid-rise residential building with finished exterior walls" />
+                <div class="gallery-cap"><strong>Mid-Rise Residential Complex</strong>Exterior wall finishing on a multi-storey apartment development</div>
             </div>
             <div>
-                <img src="{{ asset('images/home/podium.jpg') }}" alt="Podium deck waterproofing" />
-                <div class="gallery-cap"><strong>Midtown Office Podium</strong>Full membrane waterproofing</div>
+                <img src="{{ asset('images/home/podium.jpg') }}" alt="Rusted corrugated roof being washed and sealed before coating" />
+                <div class="gallery-cap"><strong>Roof Preparation</strong>Washing and sealing screw heads and laps on a weathered, rusting metal roof before coating</div>
+            </div>
+            <div>
+                <img src="{{ asset('images/home/roofproject.jpg') }}" alt="Worker spray-applying heat-reflective coating on a metal roof" />
+                <div class="gallery-cap"><strong>Spray-Applied Roof Coating</strong>Heat-reflective coating going onto a ribbed metal roof beside a commercial building</div>
             </div>
         </div>
         <div style="margin-top:34px;">
